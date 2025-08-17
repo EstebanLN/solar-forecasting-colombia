@@ -19,6 +19,26 @@ __pycache__/
 *.tmp
 *.bak
 
+# Resultados y salidas pesadas
+outputs/
+*.h5
+*.hdf5
+*.pkl
+*.joblib
+*.npy
+*.npz
+
+# Datos crudos o externos (NO versionar datasets grandes)
+data/** 
+
+# Archivos grandes de entrenamiento
+*.ckpt
+*.pt
+*.pth
+
+# Configuración IDEs
+.vscode/
+.idea/
 
 # MacOS / Windows basura
 .DS_Store
