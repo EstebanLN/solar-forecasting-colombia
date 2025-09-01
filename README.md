@@ -24,7 +24,7 @@ Traditional models like **GFS** struggle in tropical contexts due to their coars
 
 ---
 
-## 🗂 Project Structure
+## Project Structure
 
 ```bash
 solar-forecasting-colombia/
