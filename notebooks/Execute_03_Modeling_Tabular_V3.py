@@ -583,7 +583,8 @@ results = {
     "ClockworkRNN_Optuna": cw_metrics,
 }
 res_df = pd.DataFrame(results).T.sort_values("RMSE")
-display(res_df.round(3))
+#display(res_df.round(3))
+print(res_df.round(3).to_string())
 
 with open(ART_DIR/"tabular_results_optuna_keras.json","w") as f:
     json.dump({k:{m:float(vv) for m,vv in v.items()} for k,v in results.items()}, f, indent=2)
