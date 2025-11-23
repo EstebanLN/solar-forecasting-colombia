@@ -1,39 +1,50 @@
-# ☀️ Comparing Recurrent Neural Architectures for Solar Forecasting in Tropical Regions
+# ☀️ Short-Term Solar Irradiance Forecasting in Colombia
 
-This project aims to compare multiple recurrent neural network architectures — including LSTM, GRU, Dilated RNN, and Clockwork RNN — to evaluate their effectiveness in short-term solar irradiance forecasting in Colombia's highly variable tropical climate.
-
-**Goal**: Reduce forecast uncertainty and improve market performance for photovoltaic (PV) plants by identifying the most accurate and reliable RNN-based model architectures.
-
----
-
-## Motivation
-
-Colombia is advancing its energy transition by integrating solar PV into the national grid. However, regulatory mechanisms such as **CREG 060 of 2019** impose penalties for deviations between forecasted and actual energy delivery in the short-term electricity market. This creates a pressing need for accurate, context-adapted irradiance forecasting models.
-
-Traditional models like **GFS** struggle in tropical contexts due to their coarse spatial resolution and inability to capture rapid atmospheric changes. This project proposes a systematic comparison of recurrent deep learning models to support **informed operational planning**, reduce uncertainty, and optimize investment decisions in renewable energy.
+This repository contains the codebase supporting my undergraduate thesis on short-term (10–60 min) GHI forecasting for a reference PV site in El Paso, Cesar (Colombia).  
+The project compares tabular, recurrent and satellite-based deep learning models, with a special focus on tropical cloud dynamics and operational forecasting needs.
 
 ---
 
-## Core Ideas
+## Overview
 
-- **Architectural comparison**: LSTM, GRU, Dilated RNN, and Clockwork RNN evaluated side-by-side.
-- **Forecast horizons**: Real-time, intra-day (4h), and day-ahead (24h) prediction windows.
-- **Feature engineering**: Includes cyclic time variables, statistical windows, and variable interactions.
-- **Application-oriented**: Focused on practical implementation for PV plants under Colombian regulation.
-- **Replicability**: Designed to be adaptable to multiple solar generation sites.
+Colombia’s rapid growth in solar PV capacity has increased the sensitivity of the grid to fast irradiance fluctuations. Forecasting errors directly affect market performance under local regulation (CREG 060/2019), making short-term GHI prediction a high-impact operational task.
+
+This project evaluates two main families of forecasting models:
+
+- **Tabular models:** Linear Regression, Random Forest, and RNN variants (LSTM, GRU, Dilated RNN, Clockwork RNN) trained on engineered features from on-site measurements.
+- **Satellite-based models:** GOES-16 DSRF and MCMIPF products integrated through ConvLSTM architectures.
+- **Hybrid models:** Fusion of tabular and satellite inputs for improved performance under variable cloud conditions.
+
+An AWS-based ingestion pipeline was implemented to automate multi-year retrieval, cropping and storage of GOES patches using Docker-based Lambda functions and S3 buckets.
 
 ---
 
-## Project Structure
+## Main Findings (summary)
+
+- A tuned **Random Forest** is the strongest baseline, achieving ~50–55 W/m² RMSE and R² ≈ 0.97.
+- Pure ConvLSTM models capture cloud dynamics but underperform compared to the best tabular approaches.
+- **Hybrid (Tabular + DSRF)** models reduce errors relative to pure satellite models and approach RNN-based tabular models.
+- Satellite information is most useful in **intermediate GHI regimes**, where cloud variability is highest.
+
+---
+
+## Repository Structure
 
 ```bash
 solar-forecasting-colombia/
 │
-├── data/             # Raw, processed and external data sources
-├── notebooks/        # Jupyter notebooks for exploration and experimentation
-├── src/              # Python modules: preprocessing, features, models, utils
-├── outputs/          # Generated plots, results, and model checkpoints
-├── tests/            # Optional test scripts for functions and modules
-├── requirements.txt  # Python dependencies
-├── .gitignore        # Files excluded from version control
-└── README.md         # This file
+├── data/             # Raw, clean and GOES_v2 structures (empty for confidentiality)
+├── notebooks/        # Exploration, modeling and diagnostics notebooks
+├── src/              # Modular pipeline: preprocessing, features, models, utils
+├── outputs/          # Generated figures and artifacts (empty / lightweight only)
+├── tests/            # Basic tests for pipeline components
+├── environment.yml   # Conda environment (preferred)
+├── requirements.txt  # Minimal pip dependencies
+└── README.md
+```
+### Data Directory
+
+This repository does **not** include real datasets for confidentiality and size reasons.
+
+The folder structure mirrors the structure used during development so that the
+pipeline remains fully reproducible if data is provided.
