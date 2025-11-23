@@ -1,0 +1,45 @@
+name: solar-forecasting-colombia
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.12
+
+  # Core scientific stack
+  - numpy
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - seaborn
+  - tqdm
+
+  # Geospatial / satellite / climate
+  - xarray
+  - rioxarray
+  - dask
+  - netcdf4
+  - zarr
+  - pyproj
+  - cartopy
+  - pvlib
+
+  # Cloud / AWS integration
+  - boto3
+  - s3fs
+
+  # Deep learning / optimization
+  - tensorflow
+  - optuna
+  - optuna-integration
+
+  # Modeling utilities
+  - opencv
+
+  # Experiment tracking
+  - mlflow
+
+  # Notebook environment
+  - jupyterlab
+  - notebook
+  - git

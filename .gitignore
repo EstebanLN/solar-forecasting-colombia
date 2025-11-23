@@ -1,45 +1,101 @@
-# Entornos virtuales
+# =========================
+# ENVIRONMENTS
+# =========================
 .venv/
 venv/
 
-# Archivos Python compilados
+# =========================
+# PYTHON CACHE / COMPILED
+# =========================
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Entornos de configuración
+# =========================
+# ENVIRONMENT CONFIG
+# =========================
 .env
 .env.*
 
-# Jupyter Notebook checkpoints
+# =========================
+# JUPYTER
+# =========================
 .ipynb_checkpoints/
 
-# Archivos de logs o temporales
+# =========================
+# BLOCK ALL LOGS / JOURNALS
+# =========================
 *.log
-*.tmp
-*.bak
+*.journal
+*.jl
+*.jrn
 
-# Resultados y salidas pesadas
-outputs/
+# =========================
+# BLOCK ALL MODEL FILES
+# =========================
 *.h5
 *.hdf5
-*.pkl
-*.joblib
-*.npy
-*.npz
-
-# Datos crudos o externos (NO versionar datasets grandes)
-data/** 
-
-# Archivos grandes de entrenamiento
 *.ckpt
+*.ckpt.*
 *.pt
 *.pth
+*.onnx
+*.tflite
 
-# Configuración IDEs
+# =========================
+# BLOCK ALL HEAVY DATA FILES
+# =========================
+*.npy
+*.npz
+*.pkl
+*.joblib
+*.feather
+*.parquet
+*.msgpack
+*.csv.gz
+*.zip
+*.tar
+*.tar.gz
+
+# =========================
+# BLOCK ALL IMAGES (PNG, JPG, ETC.)
+# =========================
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.tiff
+*.gif
+*.bmp
+
+# =========================
+# DATA (CONFIDENTIAL)
+# BLOCK EVERYTHING EXCEPT STRUCTURE + README
+# =========================
+data/**
+!data/
+!data/**/
+!data/README.md
+!.gitkeep
+
+# =========================
+# OUTPUTS
+# BLOCK EVERYTHING EXCEPT STRUCTURE + README
+# =========================
+outputs/**
+!outputs/
+!outputs/**/
+!outputs/README.md
+!.gitkeep
+
+# =========================
+# IDEs
+# =========================
 .vscode/
 .idea/
 
-# MacOS / Windows basura
+# =========================
+# OS FILES
+# =========================
 .DS_Store
 Thumbs.db
